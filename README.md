@@ -1,5 +1,5 @@
 # healthy-camera
-Deep Learning基礎講座チームdp-nutritionの最終報告用プロジェクト
+Deep Learning基礎講座チームdp-nutritionの最終報告用兼Cookpadコンペ用プロジェクト
 
 ## Description
 料理画像をLINEでbotに送ったらカロリーを返してくれるボット
