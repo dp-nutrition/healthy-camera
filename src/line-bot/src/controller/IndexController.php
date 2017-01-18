@@ -3,16 +3,22 @@ require_once __DIR__.'/../model/Line.php';
 require_once __DIR__.'/../Enum.php';
 class IndexController
 {
+    /**
+     * index
+     */
     function index()
     {
         $line = new Line(getLineBotAccount());
         $line->receiveMessage();
         $line->sendMessage('ふむふむ。');
         if($line->messageType == 'image'){
+            $line->sendMessage('解析中...');
             $img = $line->getImage();
-            $line->sendMessage('解析完了！');
+            $foodId = $this->_analyze($img);
+            $msg = $foodId;
+            $line->sendMessage("food id:".$msg);
             $baseImgUrl = 'https://line.txmy.jp/img/';
-            $filename = 'test.jpg';
+            $filename = urlencode($line->userId).'.jpg';
             $line->sendImage($baseImgUrl . $filename);
         }else if($line->messageType == 'text'){
             $message = $line->getMessage();
@@ -27,6 +33,20 @@ class IndexController
         }else if($line->messageType == 'video'){
             $line->sendMessage('楽しそうだね！');
         }
+    }
+
+    /**
+     * 分析プログラムを実行する
+     * @param $fileName
+     * @return string
+     */
+    private function _analyze($fileName)
+    {
+        $exeFile = realpath(__DIR__.'/../../../inference/keras_load_predict_sample.py');
+        $fileName = escapeshellarg($fileName);
+        $command = 'KERAS_BACKEND=theano /usr/bin/python '.$exeFile.' '.$fileName . ' 2>&1';
+        $foodId = exec($command,$out);
+        return $foodId;
     }
 }
 
