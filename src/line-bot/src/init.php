@@ -52,6 +52,12 @@ function error($msg)
 function debug($msg)
 {
     global $app;
-    $app->getContainer()['logger']->addDebug($msg);
+    if (is_array($msg)){
+        foreach ($msg as $m){
+            $app->getContainer()['logger']->addDebug($m);
+        }
+    }else {
+        $app->getContainer()['logger']->addDebug($msg);
+    }
 }
 require_once 'db.php';
