@@ -34,13 +34,15 @@ $container['logger'] = function($c) {
 };
 
 // ルーティング
-$app->post('/{botHashedId}',function (Request $request, Response $response) {
-    $botHashedId = $request->getAttribute('botHashedId');
+$app->post('/',function (Request $request, Response $response) {
     $controller = new IndexController();
-    $controller->index($botHashedId);
+    $controller->index();
     return $response;
 });
-
+$app->get('/',function (Request $request, Response $response) {
+    echo "Hello";
+    return $response;
+});
 function error($msg)
 {
     global $app;

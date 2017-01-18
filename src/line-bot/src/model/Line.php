@@ -16,6 +16,7 @@ class Line
     public $type = '';
     public $message = '';
     public $userId = '';
+    public $messageId = '';
 
     /**
      * Line constructor.
@@ -97,11 +98,13 @@ class Line
     public function receiveMessage()
     {
         $body               = file_get_contents('php://input');
+        debug($body);
         $jsonObj            = json_decode($body);
         $this->type  = $jsonObj->{"events"}[0]->{"type"};
         if ($this->type == 'message'){
             $this->messageType  = $jsonObj->{"events"}[0]->{"message"}->{"type"};
             $this->message      = $jsonObj->{"events"}[0]->{"message"}->{"text"};
+            $this->messageId = $jsonObj->{"events"}[0]->{"message"}->{"id"};
         }
         $this->replyToken   = $jsonObj->{"events"}[0]->{"replyToken"};
         $this->userId       = $jsonObj->{"events"}[0]->{"source"}->{"userId"};
@@ -144,5 +147,29 @@ class Line
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
+    }
+
+    public function getImage($messageId = "")
+    {
+        if (empty($messageId) && empty($this->messageId)){
+            error('Line::getImageBinary()でエラーが発生しました。messageIdがセットされていません。');
+        }else if (empty($messageId)){
+            $messageId = $this->messageId;
+        }
+        $ch = curl_init("https://api.line.me/v2/bot/message/{$messageId}/content");
+        curl_setopt($ch,CURLOPT_POSTd,true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        curl_setopt($ch,CURLOPT_CUSTOMREQUEST,'GET');
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array(
+            'Authorization: Bearer '.$this->accessToken
+        ));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $imgPath  = '/usr/local/src/line.txmy.jp/public/img/';
+        $filename = 'test.jpg';
+        file_put_contents($imgPath . $filename, $result);
+        return $filename;
     }
 }
