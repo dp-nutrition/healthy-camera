@@ -168,7 +168,7 @@ class Line
         $result = curl_exec($ch);
         curl_close($ch);
         $imgPath  = '/usr/local/src/line.txmy.jp/public/img/';
-        $filename = 'test.jpg';
+        $filename = urlencode($this->userId).'.jpg';
         file_put_contents($imgPath . $filename, $result);
         return $filename;
     }
