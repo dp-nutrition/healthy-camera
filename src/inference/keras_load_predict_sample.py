@@ -1,4 +1,4 @@
-
+#!/usr/bin/python
 # coding: utf-8
 
 # In[1]:
@@ -13,7 +13,11 @@
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
-
+from os import path
+import os
+import sys
+APP_ROOT = path.dirname( path.abspath( __file__ ) ) + "/"
+os.environ['PATH'] = '/usr/local/bin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin'
 
 # In[4]:
 
@@ -21,10 +25,10 @@ from tqdm import tqdm
 from keras.models import model_from_json
 
 # load model
-model = model_from_json(open('keras_model/170115_best_25_model.json').read())
+model = model_from_json(open(APP_ROOT+'keras_model/model.json').read())
 
 # load model's weight
-model.load_weights('keras_model/170115_best_25_param.hdf5')
+model.load_weights(APP_ROOT+'keras_model/param.hdf5')
 
 
 # In[6]:
@@ -47,7 +51,7 @@ def load_jpg(data_path, resized_size=(32, 32)):
 
 # In[49]:
 
-X = load_jpg('sample_img/train_0.jpg', (64, 64))
+X = load_jpg(APP_ROOT+'../line.txmy.jp/public/img/'+ sys.argv[1], (64, 64))
 
 
 # In[50]:
@@ -60,18 +64,18 @@ def gcn(x):
 
 # In[51]:
 
-np.argmax(model.predict(gcn(X)))
+print(np.argmax(model.predict(gcn(X))))
 
 
 # In[47]:
 
 # loaded Image visualize
-img = Image.open('sample_img/train_1.jpg')
+# img = Image.open('sample_img/train_1.jpg')
 
 
-# In[48]:
+# # In[48]:
 
-img
+# img
 
 
 # In[ ]:
