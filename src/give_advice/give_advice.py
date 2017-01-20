@@ -47,26 +47,26 @@ def get_advice(food_id):
 	target_carbo   = 441.0
 	carbo_ratio    = carbo/target_carbo
 	
-	advice = food + u"ですね。\n"
+	advice = food + u"ですね。"
 	if calorie > target_calorie:
-		advice += u"カロリーが推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。\n" % (calorie_ratio)
+		advice += u"\nカロリーが推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。" % (calorie_ratio)
 	elif calorie < target_calorie * 0.8:
-		advice += u"カロリーが推奨量の%.2f倍と少なめです。\n"  % (calorie_ratio)
+		advice += u"\nカロリーが推奨量の%.2f倍と少なめです。"  % (calorie_ratio)
 	
 	if protein > target_protein:
-		advice += u"蛋白質が推奨量の%.2f倍と多めです。肉や魚、大豆製品などの摂り過ぎに気をつけましょう。\n" % (protein_ratio)
+		advice += u"\n蛋白質が推奨量の%.2f倍と多めです。肉や魚、大豆製品などの摂り過ぎに気をつけましょう。" % (protein_ratio)
 	elif protein < target_protein * 0.8:
-		advice += u"蛋白質が推奨量の%.2f倍と少なめです。肉や魚、大豆製品などから蛋白質を取るようにしましょう。\n" % (protein_ratio)
+		advice += u"\n蛋白質が推奨量の%.2f倍と少なめです。肉や魚、大豆製品などから蛋白質を取るようにしましょう。" % (protein_ratio)
 	
 	if lipid > target_lipid:
-		advice += u"""脂質が推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには脂質が多く含まれるので控えめにしましょう。\n""" % (lipid_ratio)
+		advice += u"\n脂質が推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには脂質が多く含まれるので控えめにしましょう。" % (lipid_ratio)
 	elif lipid < target_lipid * 0.8:
-		advice += u"脂質が推奨量の%.2f倍と少なめです。乳製品などから脂質を取るようにしましょう。\n" % (lipid_ratio)
+		advice += u"\n脂質が推奨量の%.2f倍と少なめです。乳製品などから脂質を取るようにしましょう。" % (lipid_ratio)
 	
 	if carbo > target_carbo:
-		advice += u"炭水化物が推奨量の%.2f倍と多めです。お米、パン、麺類、いも類、お菓子や砂糖を控えめにしましょう。\n" % (carbo_ratio)
+		advice += u"\n炭水化物が推奨量の%.2f倍と多めです。お米、パン、麺類、いも類、お菓子や砂糖を控えめにしましょう。" % (carbo_ratio)
 	elif carbo < target_carbo * 0.8:
-		advice += u"炭水化物が推奨量の%.2f倍と少なめです。お米、パン、麺類、いも類などから炭水化物を取るようにしましょう。\n" % (carbo_ratio)
+		advice += u"\n炭水化物が推奨量の%.2f倍と少なめです。お米、パン、麺類、いも類などから炭水化物を取るようにしましょう。" % (carbo_ratio)
 	
 	return advice
 	
