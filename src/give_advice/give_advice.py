@@ -72,4 +72,4 @@ def get_advice(food_id):
 if __name__ == '__main__':
 	args = sys.argv
 	advice = get_advice(food_id=int(args[1]))
-	print(advice)
+	print(advice.encode('utf-8'))
