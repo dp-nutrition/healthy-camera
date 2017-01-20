@@ -47,27 +47,35 @@ def get_advice(food_id):
 	target_carbo   = 441.0
 	carbo_ratio    = carbo/target_carbo
 	
-	advice = food + u"ですね。"
-	if calorie > target_calorie:
-		advice += u"\nカロリーが推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。" % (calorie_ratio)
+	advice = u"今日は" + food + u"を食べたんですね！"
+	if calorie > target_calorie * 1.1:
+		advice += u"\nカロリーが%.1fkcalで推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。" % (calorie, calorie_ratio)
 	elif calorie < target_calorie * 0.8:
-		advice += u"\nカロリーが推奨量の%.2f倍と少なめです。"  % (calorie_ratio)
+		advice += u"\nカロリーが%.1fkcalで推奨量の%.2f倍と少なめです。"  % (calorie, calorie_ratio)
+	else:
+	    advice += u"\nカロリーは%.1fkcalでした。いい感じですね。" % (calorie)
 	
-	if protein > target_protein:
-		advice += u"\n蛋白質が推奨量の%.2f倍と多めです。肉や魚、大豆製品などの摂り過ぎに気をつけましょう。" % (protein_ratio)
+	if protein > target_protein * 1.1:
+		advice += u"\n蛋白質が%.1fkcalで推奨量の%.2f倍と多めです。肉や魚、大豆製品などの摂り過ぎに気をつけましょう。" % (protein, protein_ratio)
 	elif protein < target_protein * 0.8:
-		advice += u"\n蛋白質が推奨量の%.2f倍と少なめです。肉や魚、大豆製品などから蛋白質を取るようにしましょう。" % (protein_ratio)
+		advice += u"\n蛋白質が%.1fkcalで推奨量の%.2f倍と少なめです。肉や魚、大豆製品などから蛋白質を取るようにしましょう。" % (protein, protein_ratio)
+	else:
+	    advice += u"\n蛋白質は%.1fkcalでした。いい感じですね。" % (protein)
 	
-	if lipid > target_lipid:
-		advice += u"\n脂質が推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには脂質が多く含まれるので控えめにしましょう。" % (lipid_ratio)
+	if lipid > target_lipid * 1.1:
+		advice += u"\n脂質が%.1fkcalで推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには脂質が多く含まれるので控えめにしましょう。" % (lipid, lipid_ratio)
 	elif lipid < target_lipid * 0.8:
-		advice += u"\n脂質が推奨量の%.2f倍と少なめです。乳製品などから脂質を取るようにしましょう。" % (lipid_ratio)
+		advice += u"\n脂質が%.1fkcalで推奨量の%.2f倍と少なめです。乳製品などから脂質を取るようにしましょう。" % (lipid, lipid_ratio)
+	else:
+	    advice += u"\n脂質は%.1fkcalでした。いい感じですね。" % (lipid)
 	
-	if carbo > target_carbo:
-		advice += u"\n炭水化物が推奨量の%.2f倍と多めです。お米、パン、麺類、いも類、お菓子や砂糖を控えめにしましょう。" % (carbo_ratio)
+	if carbo > target_carbo * 1.1:
+		advice += u"\n炭水化物が%.1fkcalで推奨量の%.2f倍と多めです。お米、パン、麺類、いも類、お菓子や砂糖を控えめにしましょう。" % (carbo, arbo_ratio)
 	elif carbo < target_carbo * 0.8:
-		advice += u"\n炭水化物が推奨量の%.2f倍と少なめです。お米、パン、麺類、いも類などから炭水化物を取るようにしましょう。" % (carbo_ratio)
-	
+		advice += u"\n炭水化物が%.1fkcalで推奨量の%.2f倍と少なめです。お米、パン、麺類、いも類などから炭水化物を取るようにしましょう。" % (carbo, carbo_ratio)
+	else:
+	    advice += u"\n炭水化物は%.1fkcalでした。いい感じですね。" % (carbo)
+	    
 	return advice
 	
 if __name__ == '__main__':
