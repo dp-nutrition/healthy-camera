@@ -17,22 +17,23 @@ def get_advice(food_id):
 	:type carbo: float
 	:param carbo: amount of carbohydrate per one meal (kcal)
 	"""
+	food = u""
 	if(food_id==0):   # sandwich
-	    calorie, protein, lipid, carbo = 535.0, 80.0, 224.0, 228.0
+	    calorie, protein, lipid, carbo, food = 535.0, 80.0, 224.0, 228.0, u"サンドイッチ"
 	elif(food_id==1): # cheese cake
-	    calorie, protein, lipid, carbo = 315.0, 22.0, 219.0, 68.0
+	    calorie, protein, lipid, carbo, food = 315.0, 22.0, 219.0, 68.0, u"チーズケーキ"
 	elif(food_id==2): # carbonara
-	    calorie, protein, lipid, carbo = 779.0, 105.0, 355.0, 290.0
+	    calorie, protein, lipid, carbo, food = 779.0, 105.0, 355.0, 290.0, u"スパゲッティ（カルボナーラ）"
 	elif(food_id==3): # bolognese
-	    calorie, protein, lipid, carbo = 623.0, 98.0, 148.0, 340.0
+	    calorie, protein, lipid, carbo, food = 623.0, 98.0, 148.0, 340.0, u"スパゲッティ（ボロネーゼ）"
 	elif(food_id==4): # rice_fried
-	    calorie, protein, lipid, carbo = 637.0, 62.0, 189.0, 400.0
+	    calorie, protein, lipid, carbo, food = 637.0, 62.0, 189.0, 400.0, u"チャーハン"
 	elif(food_id==5): # risotto
-	    calorie, protein, lipid, carbo = 416.0, 39.0, 200.0, 160.0	    
+	    calorie, protein, lipid, carbo, food = 416.0, 39.0, 200.0, 160.0, u"リゾット"	
 	if(food_id==6): # sushi
-	    calorie, protein, lipid, carbo = 588.0, 141.0, 88.0, 343.0
+	    calorie, protein, lipid, carbo, food = 588.0, 141.0, 88.0, 343.0, u"すし"
 	if(food_id==7): # soup_miso
-	    calorie, protein, lipid, carbo = 20.0, 7.0, 4.0, 13.0
+	    calorie, protein, lipid, carbo, food = 20.0, 7.0, 4.0, 13.0, u"味噌汁"
 	
 	target_calorie = 883.0
 	calorie_ratio  = calorie/target_calorie
@@ -46,11 +47,11 @@ def get_advice(food_id):
 	target_carbo   = 441.0
 	carbo_ratio    = carbo/target_carbo
 	
-	advice = u""
+	advice = food + u"ですね。\n"
 	if calorie > target_calorie:
-		advice = u"カロリーが推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。\n" % (calorie_ratio)
+		advice += u"カロリーが推奨量の%.2f倍と多めです。食べ過ぎに気をつけましょう。\n" % (calorie_ratio)
 	elif calorie < target_calorie * 0.8:
-		advice = u"カロリーが推奨量の%.2f倍と少なめです。\n"  % (calorie_ratio)
+		advice += u"カロリーが推奨量の%.2f倍と少なめです。\n"  % (calorie_ratio)
 	
 	if protein > target_protein:
 		advice += u"蛋白質が推奨量の%.2f倍と多めです。肉や魚、大豆製品などの摂り過ぎに気をつけましょう。\n" % (protein_ratio)
