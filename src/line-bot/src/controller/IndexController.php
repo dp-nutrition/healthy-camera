@@ -16,8 +16,8 @@ class IndexController
             $img = $line->getImage();
             $foodId = (int) $this->_analyze($img);
             $foodName = $this->_getFoodNameByFoodId($foodId);
-            $msg = $this->_getRandomFoodNameMessage($foodName);
-            $line->sendMessage($msg);
+//            $msg = $this->_getRandomFoodNameMessage($foodName);
+//            $line->sendMessage($msg);
             $line->sendMessage($this->_advice($foodId));
             $line->sendSticker($this->_getRandomStamp());
         }else if($line->messageType == 'text'){
