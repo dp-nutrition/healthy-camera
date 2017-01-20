@@ -3,7 +3,7 @@
 
 import sys
 
-def get_advice(calorie, protein, lipid, carbo):
+def get_advice(food_id):
 	"""
 	:type calorie: float
 	:param calorie: amount of calorie per one meal (kcal)
@@ -17,6 +17,22 @@ def get_advice(calorie, protein, lipid, carbo):
 	:type carbo: float
 	:param carbo: amount of carbohydrate per one meal (kcal)
 	"""
+	if(food_id==0):   # sandwich
+	    calorie, protein, lipid, carbo = 535.0, 80.0, 224.0, 228.0
+	elif(food_id==1): # cheese cake
+	    calorie, protein, lipid, carbo = 315.0, 22.0, 219.0, 68.0
+	elif(food_id==2): # carbonara
+	    calorie, protein, lipid, carbo = 779.0, 105.0, 355.0, 290.0
+	elif(food_id==3): # bolognese
+	    calorie, protein, lipid, carbo = 623.0, 98.0, 148.0, 340.0
+	elif(food_id==4): # rice_fried
+	    calorie, protein, lipid, carbo = 637.0, 62.0, 189.0, 400.0
+	elif(food_id==5): # risotto
+	    calorie, protein, lipid, carbo = 416.0, 39.0, 200.0, 160.0	    
+	if(food_id==6): # sushi
+	    calorie, protein, lipid, carbo = 588.0, 141.0, 88.0, 343.0
+	if(food_id==7): # soup_miso
+	    calorie, protein, lipid, carbo = 20.0, 7.0, 4.0, 13.0
 	
 	target_calorie = 883.0
 	calorie_ratio  = calorie/target_calorie
@@ -42,8 +58,7 @@ def get_advice(calorie, protein, lipid, carbo):
 		advice += u"蛋白質が推奨量の%.2f倍と少なめです。肉や魚、大豆製品などから蛋白質を取るようにしましょう。\n" % (protein_ratio)
 	
 	if lipid > target_lipid:
-		advice += u"""脂質が推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには
-		             脂質が多く含まれるので控えめにしましょう。\n""" % (lipid_ratio)
+		advice += u"""脂質が推奨量の%.2f倍です。肉の脂身、揚げ物、クリームを使った洋菓子などには脂質が多く含まれるので控えめにしましょう。\n""" % (lipid_ratio)
 	elif lipid < target_lipid * 0.8:
 		advice += u"脂質が推奨量の%.2f倍と少なめです。乳製品などから脂質を取るようにしましょう。\n" % (lipid_ratio)
 	
@@ -56,5 +71,5 @@ def get_advice(calorie, protein, lipid, carbo):
 	
 if __name__ == '__main__':
 	args = sys.argv
-	advice = get_advice(calorie=float(args[1]), protein=float(args[2]), lipid=float(args[3]), carbo=float(args[4]))
+	advice = get_advice(food_id=int(args[1]))
 	print(advice)
