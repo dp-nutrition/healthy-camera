@@ -113,7 +113,7 @@ class IndexController
             "今日は{$foodName}を食べたんですね！",
             "{$foodName}！おいしそうですね！",
             "{$foodName}は僕も大好きです。",
-            "{$foodName}うまそー！"
+            "{$foodName}！僕も食べたいなあ．"
         );
         if ($foodName == "サンドイッチ" && rand(0,1) > 0){
             return "サンドイッチ伯爵がゲームするときに片手で食べれるものを考えたのがサンドイッチなんだってよ！";
