@@ -75,9 +75,9 @@ class IndexController
     private function _getRandomStamp()
     {
         $stamp = array(
-            2,4,13,106
+            2,13,14,106,112,124,125,401
         );
-        return $stamp[rand(0,count($stamp))];
+        return $stamp[rand(0,count($stamp) - 1)];
     }
 
     /**
