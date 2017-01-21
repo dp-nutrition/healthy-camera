@@ -121,7 +121,7 @@ class IndexController
         if ($foodName == "寿司" && rand(0,1) > 0){
             return "「ガリ」の語源はガリッって音するからなんだって！安易(笑)";
         }
-        return $messages[rand(0,count($messages))];
+        return $messages[rand(0,count($messages) - 1)];
     }
 }
 
